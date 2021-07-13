@@ -20,7 +20,6 @@ class _GpsAppState extends State<GpsApp> {
   @override
   void initState() {
     super.initState();
-    // Enable hybrid composition.
     if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
   }
 
@@ -38,18 +37,31 @@ class _GpsAppState extends State<GpsApp> {
           }
         },
         child: Scaffold(
-          body: SafeArea(
-            top: true,
-            bottom: true,
-            left: true,
-            right: true,
-            child: Center(
-              child: WebView(
-                javascriptMode: JavascriptMode.unrestricted,
-                initialUrl: _initialUrl,
-                onWebViewCreated: (WebViewController webViewController) {
-                  controller = webViewController;
-                },
+          body:
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Color(0xFF2196F3),
+                  Colors.white,
+                ],
+              ),
+            ),
+            child: SafeArea(
+              top: true,
+              bottom: true,
+              left: true,
+              right: true,
+              child: Center(
+                child: WebView(
+                  javascriptMode: JavascriptMode.unrestricted,
+                  initialUrl: _initialUrl,
+                  onWebViewCreated: (WebViewController webViewController) {
+                    controller = webViewController;
+                  },
+                ),
               ),
             ),
           ),
